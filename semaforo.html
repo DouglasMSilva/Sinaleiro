@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/css/bootstrap.min.css">
+    <title>Semáforo JS</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+
+        }
+
+        .box {
+            width: 60px;
+            height: 200px;
+            background-color: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 10px;
+            
+        }
+
+        .greenLight {
+            width: 40px;
+            height:40px;
+            border-radius: 20px;
+            background-color: green;
+            
+
+        }
+
+        .yellowLight {
+            width: 40px;
+            height:40px;
+            border-radius: 20px;
+            background-color: yellow;
+
+        }
+
+        .redLight {
+            width: 40px;
+            height:40px;
+            border-radius: 20px;
+            background-color: red;
+        }
+
+        .radios {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            box-shadow: 2px 2px 2px #333;
+            
+        }
+
+        .hidden {
+            display: none;
+        }
+
+     
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+   <div class="container">
+
+        <h1>Semáforo</h1>
+
+        <div class="box">
+            <div class="greenLight"></div>
+            <div class="yellowLight"></div>
+            <div class="redLight"></div>
+        </div>
+
+        <div class="radios">
+            <input type="radio" name="option" value="verde"> Verde
+            <input type="radio" name="option" value="amarelo"> Amarelo
+            <input type="radio" name="option" value="vermelho"> Vermelho
+        </div>
+
+        <div id="campo" class="hidden">
+            <label id="texto"></label>
+        </div>
+
+        <button class="btn btn-primary" onclick="semaforo()">Verificar</button>
+
+   </div>
+        
+       
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js" integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function semaforo() {
+
+            const green = document.querySelector(".greenLight");
+            const yellow = document.querySelector(".yellowLight");
+            const red = document.querySelector(".redLight");  
+
+            document.querySelectorAll('input[type="radio"]').forEach(function(radio){
+                let cor = document.querySelector('input[name="option"]:checked');
+                if(cor.value == "verde") {
+                    green.style.background = "lightgreen";
+                    yellow.style.background = "yellow";
+                    red.style.background = "red";
+                    let texto = "Siga!";
+                    document.getElementById('texto').textContent = texto;
+                    let campo = document.getElementById('campo');
+                    campo.classList.remove('hidden');
+                }
+                else if(cor.value == "amarelo") {
+                    green.style.background = "green";
+                    yellow.style.background = "lightyellow";
+                    red.style.background = "red";
+                    let texto = "Atenção!";
+                    document.getElementById('texto').textContent = texto;
+                    let campo = document.getElementById('campo');
+                    campo.classList.remove('hidden');
+                }
+                else if(cor.value == "vermelho") {
+                    green.style.background = "green";
+                    yellow.style.background = "yellow";
+                    red.style.background = "pink";
+                    let texto = "Pare!";
+                    document.getElementById('texto').textContent = texto;
+                    let campo = document.getElementById('campo');
+                    campo.classList.remove('hidden');
+                }
+
+            });
+        }
+    </script>
+
+</body>
+</html>
